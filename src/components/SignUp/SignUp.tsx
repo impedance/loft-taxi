@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../../shared/Button';
 
 export interface SignUpProps {
@@ -7,33 +7,30 @@ export interface SignUpProps {
  
 export interface SignUpState {}
    
-class SignUp extends React.Component<SignUpProps, SignUpState> {
-  state = {
-    email: "",
-    password: ""
+const SignUp = ({onPathChange}: SignUpProps) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const onChangePassword = (e: any) => {
+    setEmail(e.target.value)
   }
-  onChangeHandler = (e: any) => {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
+  const onChangeEmail= (e: any) => {
+    setPassword(e.target.value)
   }
-  onSubmit = (e: any) => {
-    const { onPathChange } = this.props;
+  const onSubmit = (e: any) => {
     e.preventDefault();
     onPathChange('login');
   }
-  render() { 
-    const { email, password} = this.state;
     return ( 
       <div>
         <h1>Reg form</h1>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={onSubmit}>
           <label>
             email
             <input 
               value={email} 
               name="email"            
-              onChange={this.onChangeHandler}>
+              onChange={onChangeEmail}>
             </input>
           </label>
           <label>
@@ -41,14 +38,13 @@ class SignUp extends React.Component<SignUpProps, SignUpState> {
             <input 
               value={password} 
               name="password" 
-              onChange={this.onChangeHandler}> 
+              onChange={onChangePassword}> 
             </input>
           </label>   
           <Button text='Confirm'></Button>     
         </form>
       </div>
      );
-  }
 }
  
 export default SignUp;
