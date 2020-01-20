@@ -1,10 +1,21 @@
 import React from 'react';
+import Button from '../../shared/Button';
 
-export interface HeaderProps {}
+export interface HeaderProps {
+  paths: string[];
+  onPathChange: (path: string) => void;
+}
 
-const Header: React.SFC<HeaderProps> = () => {
+const Header: React.SFC<HeaderProps> = ({paths, onPathChange}) => {
   return (
-    <div>Header</div>
+    <header>
+      <ul>
+        {paths.map((el, index) => 
+          <li key={index}>
+            <Button text={el} onClick={onPathChange} />
+          </li>)}
+      </ul>
+    </header>
   )
 }
 
