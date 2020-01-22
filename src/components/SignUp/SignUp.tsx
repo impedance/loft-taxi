@@ -11,15 +11,15 @@ const SignUp = ({onPathChange}: SignUpProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onChangePassword = (e: any) => {
+  const onChangeEmail = (e: any) => {
     setEmail(e.target.value)
   }
-  const onChangeEmail= (e: any) => {
+  const onChangePassword= (e: any) => {
     setPassword(e.target.value)
   }
   const onSubmit = (e: any) => {
     e.preventDefault();
-    onPathChange('login');
+    onPathChange('map');
   }
     return ( 
       <div>

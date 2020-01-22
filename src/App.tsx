@@ -22,7 +22,7 @@ const App = () => {
       case 'signup':
         return <SignUp onPathChange={onPathChange}/>;
       default:
-        return <Signin />;
+        return <Signin onPathChange={onPathChange}/>;
     }
   }
   return (
