@@ -5,7 +5,7 @@ import Map  from './components/Map/Map';
 import Signin from './components/Signin';
 import SignUp from './components/SignUp';
 // @ts-ignore
-import { Logo, MCLogo } from 'loft-taxi-mui-theme';
+import { Logo } from 'loft-taxi-mui-theme';
 
 const paths = ['login', 'profile', 'map', 'signup'];
 

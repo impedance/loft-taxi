@@ -1,0 +1,13 @@
+header {
+  display: flex;
+  background-color: tan;
+  justify-content: center;
+}
+
+ul {
+  display: flex;
+}
+
+li {
+  list-style-type: none;
+}

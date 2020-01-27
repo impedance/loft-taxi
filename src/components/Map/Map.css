@@ -1,0 +1,8 @@
+.mapboxgl-map {
+  display: flex;
+  justify-content: center;
+  position: inherit;
+  align-items: center;
+  width: 400px;
+  height: 400px;
+}

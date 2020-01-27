@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../../shared/Button';
+import './Header.css';
 
 export interface HeaderProps {
   paths: string[];
@@ -11,8 +12,8 @@ const Header: React.SFC<HeaderProps> = ({paths, onPathChange}) => {
     <header>
       <ul>
         {paths.map((el, index) => 
-          <li key={index}>
-            <Button text={el} onClick={onPathChange} />
+          <li className='nav-button' key={index}>
+            <Button  text={el} onClick={onPathChange} />
           </li>)}
       </ul>
     </header>
