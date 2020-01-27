@@ -4,6 +4,8 @@ import Profile from './components/Profile';
 import Map  from './components/Map/Map';
 import Signin from './components/Signin';
 import SignUp from './components/SignUp';
+// @ts-ignore
+import { Logo, MCLogo } from 'loft-taxi-mui-theme';
 
 const paths = ['login', 'profile', 'map', 'signup'];
 
@@ -28,8 +30,11 @@ const App = () => {
   return (
     <div>
       <Header 
-        paths={paths} onPathChange={onPathChange} ></Header>
+        paths={paths} onPathChange={onPathChange}>          
+      </Header>
         {renderCurrentComponent(currentPath)}
+      <Logo />
+      {/* <MCLogo /> */}
     </div>
   );
 }
