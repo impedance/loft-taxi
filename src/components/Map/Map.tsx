@@ -30,7 +30,7 @@ class Map extends React.Component<MapProps, MapState> {
 
   render() {
     const style: object = {
-      position: 'absolute',
+      position: 'relative',
       top: 0,
       bottom: 0,
       width: '100%'

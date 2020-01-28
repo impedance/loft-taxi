@@ -6,16 +6,17 @@ import Signin from './components/Signin';
 import SignUp from './components/SignUp';
 // @ts-ignore
 import { Logo } from 'loft-taxi-mui-theme';
+import {AuthContext} from './context/authContext';
 
 const paths = ['login', 'profile', 'map', 'signup'];
 
 const App = () => {
   const [currentPath, setCurrentPath] = useState('login');
 
-  const onPathChange = (path: string) => {
+  const onPathChange = (path) => {
     setCurrentPath(path);
   }
-  const renderCurrentComponent = (path: string) => {
+  const renderCurrentComponent = (path) => {
     switch (path) {
       case 'profile':
         return <Profile />;
@@ -28,13 +29,16 @@ const App = () => {
     }
   }
   return (
-    <div>
-      <Header 
-        paths={paths} onPathChange={onPathChange}>          
-      </Header>
-        {renderCurrentComponent(currentPath)}
+    <div className="App">
+      <AuthContext.Consumer>
+        <div className="header">
+          <Header 
+            paths={paths} onPathChange={onPathChange}>          
+          </Header>
+          {renderCurrentComponent(currentPath)}
+        </div>
+      </AuthContext.Consumer>
       <Logo />
-      {/* <MCLogo /> */}
     </div>
   );
 }
