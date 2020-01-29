@@ -1,37 +1,35 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
-const AuthContext = React.createContext('');
+const AuthContext = React.createContext("");
 
 class AuthProvider extends Component {
-    
-    state = {
-      isAuth: false,
-    }
+  state = {
+    isAuth: false
+  };
   logIn = () => {
-    this.setState({isAuth: true})
-  }
+    this.setState({ isAuth: true });
+  };
 
   logOut = () => {
-    this.setState({isAuth: false})
-  }
+    this.setState({ isAuth: false });
+  };
 
   getProviderValue = () => {
-    const {isAuth} = this.state;
+    const { isAuth } = this.state;
     return {
       isAuth,
-      login: this.login,
-      logOut: this.logOut,
-    }
-  }
+      logIn: this.logIn,
+      logOut: this.logOut
+    };
+  };
 
-  render() { 
-    const {children} = this.props;
-    return ( 
-      <AuthContext.Provider value={this.getProviderValue}>
+  render() {
+    const { children } = this.props;
+    return (
+      <AuthContext.Provider value={this.getProviderValue()}>
         {children}
       </AuthContext.Provider>
-     );
+    );
   }
 }
-export {AuthContext, AuthProvider}
- 
+export { AuthContext, AuthProvider };
