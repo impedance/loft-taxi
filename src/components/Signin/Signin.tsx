@@ -3,10 +3,11 @@ import './Signin.css'
 
 export interface SigninProps {
   onPathChange: (path: string) => void;
+  logIn: () => void;
 }
 
 
-const Signin: React.SFC<SigninProps> = ({onPathChange}) => {
+const Signin: React.SFC<SigninProps> = ({onPathChange, logIn}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
@@ -20,6 +21,7 @@ const Signin: React.SFC<SigninProps> = ({onPathChange}) => {
 
   const onSubmit =(e: any) => {
     e.preventDefault();
+    logIn();
     onPathChange('map');
   }
 

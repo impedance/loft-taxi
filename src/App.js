@@ -4,8 +4,8 @@ import Profile from "./components/Profile";
 import Map from "./components/Map/Map";
 import Signin from "./components/Signin";
 import SignUp from "./components/SignUp";
-// @ts-ignore
 import { Logo } from "loft-taxi-mui-theme";
+import {Button} from '@material-ui/core';
 import { AuthContext } from "./context/authContext";
 
 const paths = ["login", "profile", "map", "signup"];
@@ -25,19 +25,19 @@ const App = () => {
       case "signup":
         return <SignUp onPathChange={onPathChange} />;
       default:
-        return <Signin onPathChange={onPathChange} />;
+        return <Signin onPathChange={onPathChange} logIn={logIn} />;
     }
   };
   const logged = (
     <div>
-      <button onClick={logOut}>LogOut</button>
+      <Button size="small" onClick={logOut}>LogOut</Button>
       {renderCurrentComponent(currentPath)}
     </div>
   );
   const notLogged = (
     <div>
       <p>notLoggedIn</p>
-      <button onClick={logIn}>LogIn</button>
+      {renderCurrentComponent('login')}
     </div>
   );
   return (
