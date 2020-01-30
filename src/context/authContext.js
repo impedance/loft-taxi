@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-const AuthContext = React.createContext("");
+const AuthContext = React.createContext('');
 
 class AuthProvider extends Component {
   state = {
-    isAuth: false
+    isAuth: false,
   };
   logIn = () => {
     this.setState({ isAuth: true });
@@ -19,7 +19,7 @@ class AuthProvider extends Component {
     return {
       isAuth,
       logIn: this.logIn,
-      logOut: this.logOut
+      logOut: this.logOut,
     };
   };
 
