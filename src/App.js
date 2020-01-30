@@ -5,7 +5,7 @@ import Map from './components/Map/Map';
 import Signin from './components/Signin';
 import SignUp from './components/SignUp';
 import { Logo } from 'loft-taxi-mui-theme';
-import { Button } from '@material-ui/core';
+import { Button, Paper } from '@material-ui/core';
 import { AuthContext } from './context/authContext';
 
 const paths = ['login', 'profile', 'map', 'signup'];
@@ -43,13 +43,13 @@ const App = () => {
     </div>
   );
   return (
-    <div className="App">
+    <Paper>
       <div className="header">
         <Header paths={paths} onPathChange={onPathChange}></Header>
         <div>{isAuth ? logged : notLogged}</div>
       </div>
       <Logo />
-    </div>
+    </Paper>
   );
 };
 
