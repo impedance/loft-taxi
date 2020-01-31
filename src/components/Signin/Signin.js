@@ -1,25 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 // import './Signin.css';
 import { Typography, Button, TextField } from '@material-ui/core';
+import { AuthContext } from '../../context/authContext';
 
-export interface SigninProps {
-  onPathChange: (path: string) => void;
-  logIn: () => void;
-}
-
-const Signin: React.SFC<SigninProps> = ({ onPathChange, logIn }) => {
+const Signin = ({ onPathChange }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { logIn } = useContext(AuthContext);
 
-  const onChangePassword = (e: any) => {
+  const onChangePassword = e => {
     setPassword(e.target.value);
   };
 
-  const onChangeEmail = (e: any) => {
+  const onChangeEmail = e => {
     setEmail(e.target.value);
   };
 
-  const onSubmit = (e: any) => {
+  const onSubmit = e => {
     e.preventDefault();
     logIn();
     onPathChange('map');
