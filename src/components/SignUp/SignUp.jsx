@@ -1,26 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button } from '@material-ui/core';
+import { AuthContext } from '../../context/authContext';
 
-
-export interface SignUpProps {
-  onPathChange: (path: string) => void;
-}
- 
-export interface SignUpState {}
    
-const SignUp = ({onPathChange}: SignUpProps) => {
+const SignUp = ({onPathChange}) => {
+
+  const { logIn } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onChangeEmail = (e: any) => {
+  const onChangeEmail = (e) => {
     setEmail(e.target.value)
   }
-  const onChangePassword= (e: any) => {
+  const onChangePassword= (e) => {
     setPassword(e.target.value)
   }
-  const onSubmit = (e: any) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    onPathChange('map');
+    onPathChange('profile');
+    logIn();
   }
   return ( 
     <div>
