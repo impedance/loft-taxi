@@ -26,7 +26,7 @@ const Signin = ({ onPathChange }) => {
       <Typography variant="h6" align="left" gutterBottom>
         Лофт таксишка
       </Typography>
-      <form>
+      <form onSubmit={onSubmit}>
         <TextField name="email" value={email} onChange={onChangeEmail} />
         <br />
         <TextField
@@ -36,7 +36,7 @@ const Signin = ({ onPathChange }) => {
           className="form-control"
         />
       </form>
-      <Button onClick={onSubmit} color="primary" variant="contained">
+      <Button type="submit" color="primary" variant="contained">
         Enter
       </Button>
     </div>

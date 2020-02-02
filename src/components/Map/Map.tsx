@@ -10,7 +10,14 @@ const accessToken: string = 'pk.eyJ1IjoiaW1wZWRhbmNlIiwiYSI6ImNrNXR1OHA1YTB6bHEz
 const coordinates: [number, number] = [-87.661557, 41.893748];
 const zoom: number = 10.7;
 const style: string = 'mapbox://styles/mapbox/streets-v9';
- 
+ // transfer constants to separate file 
+const style: object = {
+  position: 'relative',
+  top: 0,
+  bottom: 0,
+  width: '100%'
+};
+
 class Map extends React.Component<MapProps, MapState> {
   map: mapboxgl.Map | any;
   mapContainer: any;
@@ -29,12 +36,6 @@ class Map extends React.Component<MapProps, MapState> {
   }
 
   render() {
-    const style: object = {
-      position: 'relative',
-      top: 0,
-      bottom: 0,
-      width: '100%'
-    };
 
     return <div style={style} ref={el => this.mapContainer = el} />;
   }
