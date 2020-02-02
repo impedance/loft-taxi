@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Button from '../../shared/Button';
+import { Button } from '@material-ui/core';
+
 
 export interface SignUpProps {
   onPathChange: (path: string) => void;
@@ -24,7 +25,7 @@ const SignUp = ({onPathChange}: SignUpProps) => {
   return ( 
     <div>
       <h1>Reg form</h1>
-      <form onSubmit={onSubmit}>
+      <form>
         <label>
           email
           <input 
@@ -41,7 +42,9 @@ const SignUp = ({onPathChange}: SignUpProps) => {
             onChange={onChangePassword}> 
           </input>
         </label>   
-        <Button text='Confirm'></Button>     
+        <Button onClick={onSubmit} color="primary" variant="contained">
+        Confirm
+      </Button>     
       </form>
     </div>
   );
