@@ -2,11 +2,12 @@ import React, { useState, useContext } from 'react';
 import Header from './components/Header';
 import Profile from './components/Profile';
 import Map from './components/Map/Map';
-import Signin from './components/Signin';
+import Login from './components/Signin';
 import SignUp from './components/SignUp';
 import { Logo } from 'loft-taxi-mui-theme';
 import { Paper } from '@material-ui/core';
 import { AuthContext } from './context/authContext';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 const paths = ['signin', 'profile', 'map', 'signup'];
 
@@ -29,18 +30,23 @@ const App = () => {
         case 'signup':
           return <SignUp onPathChange={onPathChange} />;
         default:
-          return <Signin onPathChange={onPathChange} />;
+          return <Login onPathChange={onPathChange} />;
       }
     }
   };
   return (
-    <Paper>
-      <div className="header">
-        <Header paths={paths} onPathChange={onPathChange} />
-        <div>{renderCurrentComponent(currentPath)}</div>
-      </div>
-      <Logo />
-    </Paper>
+    <BrowserRouter>
+      <Paper>
+        <div className="header">
+          <Header paths={paths} onPathChange={onPathChange} />
+          <div>{renderCurrentComponent(currentPath)}</div>
+        </div>
+        <Logo />
+      </Paper>
+      <Switch>
+        <Route path="/login" component={Login}></Route>
+      </Switch>
+    </BrowserRouter>
   );
 };
 
