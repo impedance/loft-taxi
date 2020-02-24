@@ -2,52 +2,35 @@ import React, { useState, useContext } from 'react';
 import Header from './components/Header';
 import Profile from './components/Profile';
 import Map from './components/Map/Map';
-import Login from './components/Signin';
+import Login from './components/Login';
 import SignUp from './components/SignUp';
-import { Logo } from 'loft-taxi-mui-theme';
-import { Paper } from '@material-ui/core';
+// import { Paper } from '@material-ui/core';
 import { AuthContext } from './context/authContext';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
-const paths = ['signin', 'profile', 'map', 'signup'];
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { AppRouting } from './components/AppRouting';
 
 const App = () => {
-  const [currentPath, setCurrentPath] = useState('signin');
-  const { isAuth } = useContext(AuthContext);
-  const onPathChange = path => {
-    setCurrentPath(path);
-  };
-  const renderCurrentComponent = path => {
-    if (isAuth) {
-      switch (path) {
-        case 'profile':
-          return <Profile />;
-        default:
-          return <Map />;
-      }
-    } else {
-      switch (path) {
-        case 'signup':
-          return <SignUp onPathChange={onPathChange} />;
-        default:
-          return <Login onPathChange={onPathChange} />;
-      }
-    }
-  };
+  const { isLogin = false } = this.props;
   return (
     <BrowserRouter>
-      <Paper>
-        <div className="header">
-          <Header paths={paths} onPathChange={onPathChange} />
-          <div>{renderCurrentComponent(currentPath)}</div>
-        </div>
-        <Logo />
-      </Paper>
       <Switch>
-        <Route path="/login" component={Login}></Route>
+        <PrivateRoute
+          path="/dashboard"
+          permitted={isLogin}
+          component={AppRouting}
+        ></PrivateRoute>
+        <Route path="/login" component={Login} />
       </Switch>
     </BrowserRouter>
   );
 };
 
+const PrivateRoute = ({ component: Component, permitted, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      permitted ? <Component {...props} /> : <Redirect to="/login"></Redirect>
+    }
+  ></Route>
+);
 export default App;

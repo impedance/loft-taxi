@@ -1,5 +1,6 @@
 import * as constants from './constants';
-import { createAction, combineReducers } from 'redux-actions';
+import {combineReducers} from 'redux';
+import { createAction } from 'redux-actions';
 
 const initialState = {
   isAuth: false,
