@@ -8,9 +8,10 @@ import {Provider} from 'react-redux';
 import {store} from './core/store';
 
 ReactDOM.render(
-  <MuiThemeProvider theme={theme}>
+  //<MuiThemeProvider theme={theme}>
     <Provider store={store}>
       <App />
-    </Provider>
-  </MuiThemeProvider>, document.getElementById('root')
+    </Provider>,
+  //</MuiThemeProvider>, 
+  document.getElementById('root')
 );

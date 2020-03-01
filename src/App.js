@@ -1,25 +1,32 @@
 import React, { useState, useContext } from 'react';
+
 import Header from './components/Header';
 import Profile from './components/Profile';
 import Map from './components/Map/Map';
-import Login from './components/Login';
-import SignUp from './components/SignUp';
-// import { Paper } from '@material-ui/core';
-import { AuthContext } from './context/authContext';
+import LogInForm from './components/Login';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { AppRouting } from './components/AppRouting';
+import {isAuthSelector} from "./core/store/selectors";
+import {connect} from 'react-redux';
+
+const mapStateToProps = (state) => {
+    return {
+        isAuth: isAuthSelector(state)
+    }
+}
 
 const App = () => {
-  const { isLogin = false } = this.props;
+  const { isLogin } = this.props;
   return (
     <BrowserRouter>
       <Switch>
         <PrivateRoute
-          path="/dashboard"
-          permitted={isLogin}
-          component={AppRouting}
-        ></PrivateRoute>
-        <Route path="/login" component={Login} />
+    path="/dashboard"
+    permitted={isLogin}
+    component={AppRouting}
+    />
+        <Route path="/login" component={LogInForm} />
+        {/*<Redirect*/}
       </Switch>
     </BrowserRouter>
   );
@@ -29,8 +36,8 @@ const PrivateRoute = ({ component: Component, permitted, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      permitted ? <Component {...props} /> : <Redirect to="/login"></Redirect>
+        permitted ? <Component {...props} /> : <Redirect to="/login"/>
     }
-  ></Route>
+    />
 );
-export default App;
+export default connect(mapStateToProps, null)(App);
