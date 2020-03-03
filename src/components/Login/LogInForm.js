@@ -1,21 +1,20 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Typography, Button, TextField } from '@material-ui/core';
-import { AuthContext } from '../../context/authContext';
-import {connect} from 'react-redux';
-import {isAuthSelector} from "../../core/store/selectors";
-import {actions} from "../../core/store/duck";
-import {Redirect} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { isAuthSelector } from '../../core/store/selectors';
+import { actions } from '../../core/store/duck';
+import { Redirect } from 'react-router-dom';
 
-const mapStateToProps = (state) => {
-    return {
-    isAuth: isAuthSelector(state)
-    }
+const mapStateToProps = state => {
+  return {
+    isAuth: isAuthSelector(state),
+  };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        logIn: (userData) => dispatch(actions.logIn(userData))
-    }
+const mapDispatchToProps = dispatch => {
+  return {
+    logIn: userData => dispatch(actions.logIn(userData)),
+  };
 };
 
 const LogInForm = ({ onPathChange }) => {
@@ -31,34 +30,35 @@ const LogInForm = ({ onPathChange }) => {
   };
 
   const onSubmit = e => {
-      const {logIn} = this.props;
+    const { logIn } = this.props;
     e.preventDefault();
     logIn(email, password);
   };
 
-  const {isAuth} = this.props;
+  const { isAuth } = this.props;
+  console.log(isAuth);
   if (isAuth) {
-     return <Redirect path='/login' to='/dashboard/map' />
+    return <Redirect path="/login" to="/dashboard/map" />;
   }
   return (
-      <div className="signin">
-          <Typography variant="h6" align="left" gutterBottom>
-              Лофт таксишка
-          </Typography>
-          <form>
-              <TextField name="email" value={email} onChange={onChangeEmail} />
-              <br />
-              <TextField
-                  name="password"
-                  value={password}
-                  onChange={onChangePassword}
-                  className="form-control"
-              />
-          </form>
-          <Button onClick={onSubmit} color="primary" variant="contained">
-              Enter
-          </Button>
-      </div>
+    <div className="signin">
+      <Typography variant="h6" align="left" gutterBottom>
+        Лофт-такси
+      </Typography>
+      <form>
+        <TextField name="email" value={email} onChange={onChangeEmail} />
+        <br />
+        <TextField
+          name="password"
+          value={password}
+          onChange={onChangePassword}
+          className="form-control"
+        />
+      </form>
+      <Button onClick={onSubmit} color="primary" variant="contained">
+        Enter
+      </Button>
+    </div>
   );
 };
 
